@@ -7,12 +7,12 @@ import br.hotelEveris.app.model.Quarto;
 
 public class OcupacaoRequest {
 
-	private Date data;
+	private String data;
 	private int qtdDias;
 	private Long clienteId;
 	private Long quartoId;
 	
-	public OcupacaoRequest(Date data, int qtdDias, Long clienteId, Long quartoId) {
+	public OcupacaoRequest(String data, int qtdDias, Long clienteId, Long quartoId) {
 		super();
 		this.data = data;
 		this.qtdDias = qtdDias;
@@ -24,10 +24,10 @@ public class OcupacaoRequest {
 		
 	}
 	
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 

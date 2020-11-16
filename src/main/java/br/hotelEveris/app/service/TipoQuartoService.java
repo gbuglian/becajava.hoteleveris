@@ -21,7 +21,7 @@ public class TipoQuartoService {
 	
 	public BaseResponse inserir(TipoQuartoRequest request) {		
 		if(request.getDescricao() == "") {
-			return new BaseResponse(400, "Insira o nome  do quarto");
+			return new BaseResponse(400, "Insira a descrição  do quarto");
 		}
 		
 		if(request.getValor() == null || request.getValor() <= 0) {
@@ -46,6 +46,10 @@ public class TipoQuartoService {
 			return new TipoQuartoResponse(400, "Tipo de quarto não localizado");
 		}
 		
+		if(id <= 0) {
+			return new TipoQuartoResponse(400, "Tipo de quarto não localizado");
+		}
+		
 		return new TipoQuartoResponse(
 				200, "Tipo de Quarto obtido com sucesso",
 				tipo.get().getId(),
@@ -56,10 +60,6 @@ public class TipoQuartoService {
 	
 	public TipoQuartoListResponse listar(){
 		List<TipoQuarto> tipos = _repository.findAll();
-		
-		if(tipos.isEmpty()) {
-			return new TipoQuartoListResponse(400, "Nenhum tipo de quarto localizado");
-		}
 		
 		return new TipoQuartoListResponse(
 				200, "Tipos de quartos obtidos com sucesso",

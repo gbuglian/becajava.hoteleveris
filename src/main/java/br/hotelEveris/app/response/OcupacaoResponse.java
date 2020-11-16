@@ -8,13 +8,13 @@ import br.hotelEveris.app.model.Quarto;
 public class OcupacaoResponse extends BaseResponse {
 
 	private Long id;
-	private Date data;
+	private String data;
 	private int QtdDias;
 	private String status;
 	private Cliente cliente;
 	private Quarto quarto;
 	
-	public OcupacaoResponse(int statusCode, String message, Long id, Date data, int qtdDias, String status,Cliente cliente, Quarto quarto) {
+	public OcupacaoResponse(int statusCode, String message, Long id, String data, int qtdDias, String status,Cliente cliente, Quarto quarto) {
 		super(statusCode, message);
 		this.id = id;
 		this.data = data;
@@ -40,11 +40,11 @@ public class OcupacaoResponse extends BaseResponse {
 		this.id = id;
 	}
 
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 

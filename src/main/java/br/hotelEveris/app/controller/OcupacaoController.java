@@ -31,16 +31,6 @@ public class OcupacaoController extends BaseController {
 		}
 	}
 	
-	@GetMapping(path = "/{id}")
-	public ResponseEntity obter(@PathVariable Long id) {
-		try {
-			OcupacaoResponse response = service.obter(id);
-			return ResponseEntity.status(response.statusCode).body(response);
-		}catch(Exception e) {
-			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
-		}
-	}
-	
 	@GetMapping
 	public ResponseEntity listar() {
 		try {

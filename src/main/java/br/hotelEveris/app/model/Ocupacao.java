@@ -10,7 +10,7 @@ public class Ocupacao {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Date data;
+	private String data;
 	private int QtdDias;
 	private String status;
 	
@@ -22,7 +22,7 @@ public class Ocupacao {
 	@JoinColumn(name = "IdQuarto")
 	private Quarto quarto;
 	
-	public Ocupacao(Date data, int qtdDias, Cliente cliente, Quarto quarto) {
+	public Ocupacao(String data, int qtdDias, Cliente cliente, Quarto quarto) {
 		super();
 		this.data = data;
 		this.QtdDias = qtdDias;
@@ -48,11 +48,11 @@ public class Ocupacao {
 		this.id = id;
 	}
 
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 

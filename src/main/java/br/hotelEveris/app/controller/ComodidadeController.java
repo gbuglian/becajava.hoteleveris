@@ -42,15 +42,4 @@ public class ComodidadeController extends BaseController {
 			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
 		}
 	}
-
-	@GetMapping
-	public ResponseEntity listar() {
-		try {
-			BaseResponse response = service.listar();
-			return ResponseEntity.status(response.statusCode).body(response);
-		} catch (Exception e) {
-			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
-		}
-	}
-
 }

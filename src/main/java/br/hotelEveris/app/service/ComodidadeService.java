@@ -40,6 +40,10 @@ public class ComodidadeService {
 			return new ComodidadeResponse(400, "Comodidade não localizada");
 		}
 		
+		if(id <= 0) {
+			return new ComodidadeResponse(400, "Comodidade não existe");
+		}
+		
 		return new ComodidadeResponse(
 				200,
 				"Cliente obtido com sucesso",
@@ -47,20 +51,4 @@ public class ComodidadeService {
 				comodidade.get().getNome()
 				);
 	}
-	
-	public ComodidadeListResponse listar() {
-		List <Comodidade> list = _repository.findAll();
-		
-		
-		if(list.isEmpty()) {
-			return new ComodidadeListResponse(400, "Nenhuma comodidade localizada");
-		}
-		
-		return new ComodidadeListResponse(
-				200,
-				"Comodidades obtifas com sucesso",
-				list
-				);
-	}
-
 }

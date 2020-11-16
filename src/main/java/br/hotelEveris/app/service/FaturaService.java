@@ -22,10 +22,10 @@ public class FaturaService {
 	
 	private String hashContaHotel = "123456";
 	
-	public void transferencia(){
+	public BaseResponse transferencia(){
 		
 		RestTemplate restTemplate = new RestTemplate();
-		String url = "http://localhost:8081/contas/transferencias";
+		String url = "http://localhost:8081/operacao/transferencia";
 		
 		List<Ocupacao> lista = ocupacaoRepository.findByStatus("N");
 		
@@ -43,6 +43,8 @@ public class FaturaService {
 		ocupacaoRepository.save(ocupacao);
 		
 		}
+		
+		return new BaseResponse(200, "Transferencia realizada com sucesso");
 		
 	}
 	

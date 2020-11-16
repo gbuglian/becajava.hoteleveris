@@ -49,6 +49,10 @@ public class ClienteService {
 			return new ClienteResponse(400, "Cliente não informado");
 		}
 		
+		if(id <= 0) {
+			return new ClienteResponse(400, "Id Inválido");
+		}
+		
 		return new ClienteResponse(
 				200, "Cliente Obtido com sucesso",
 				cliente.get().getId(),

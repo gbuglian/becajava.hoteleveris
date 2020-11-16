@@ -12,6 +12,7 @@ import br.hotelEveris.app.model.QuartoComodidade;
 import br.hotelEveris.app.model.TipoQuarto;
 import br.hotelEveris.app.repository.QuartoComodidadeRepository;
 import br.hotelEveris.app.repository.QuartoRepository;
+import br.hotelEveris.app.request.ComodidadeRequest;
 import br.hotelEveris.app.request.QuartoPatchRequest;
 import br.hotelEveris.app.request.QuartoRequest;
 import br.hotelEveris.app.response.BaseResponse;
@@ -40,6 +41,10 @@ public class QuartoService {
 		if (request.getSituacao() == "") {
 			return new BaseResponse(400, "Preencha a situação do quarto");
 		}
+		
+		if(request.getTipoQuartoId() <= 0) {
+			return new BaseResponse(400, "Preencha o tipo de quarto");
+		}
 
 		TipoQuarto tipoQuarto = new TipoQuarto(request.getTipoQuartoId());
 
@@ -54,7 +59,7 @@ public class QuartoService {
 
 		Long idQuarto = _repository.findByNumQuarto(request.getNumQuarto()).get().getId();
 
-		for (Comodidade item : request.getComodidades()) {
+		for (ComodidadeRequest item : request.getComodidades()) {
 			QuartoComodidade quartoComodidade = new QuartoComodidade(
 					new Quarto(idQuarto),
 					new Comodidade(item.getId())
@@ -72,6 +77,10 @@ public class QuartoService {
 	
 		if(quarto.isEmpty()) {
 			return new QuartoResponse(400, "Quarto não localizado");
+		}
+		
+		if(id <= 0) {
+			return new QuartoResponse(400, "Quarto não existente");
 		}
 		
 		return new QuartoResponse(
@@ -104,7 +113,7 @@ public class QuartoService {
 			return new BaseResponse(400, "Id inválido");
 		}
 		
-		if(request.getSituacao() == ""){
+		if(request.getSituacao() == null){
 			return new BaseResponse(400, "Situação não informada");
 		}		
 		

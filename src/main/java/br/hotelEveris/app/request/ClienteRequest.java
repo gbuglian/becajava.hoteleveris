@@ -12,6 +12,10 @@ public class ClienteRequest {
 		this.cpf = cpf;
 		this.hash = hash;
 	}
+	
+	public ClienteRequest() {
+		super();
+	}
 	public String getNome() {
 		return nome;
 	}
