@@ -8,6 +8,18 @@ public class TipoQuartoListResponse extends BaseResponse {
 	
 	private List <TipoQuarto> tiposQuartos;
 
+	public TipoQuartoListResponse(int statusCode, String message, List<TipoQuarto> tiposQuartos) {
+		super(statusCode, message);
+		this.tiposQuartos = tiposQuartos;
+	}
+	
+	public TipoQuartoListResponse(int statusCode, String message) {
+		super(statusCode, message);
+	}
+	
+	public TipoQuartoListResponse() {
+	}
+
 	public List<TipoQuarto> getTiposQuartos() {
 		return tiposQuartos;
 	}

@@ -1,9 +1,6 @@
 package br.hotelEveris.app.model;
 
-import java.util.Set;
-
 import javax.persistence.*;
-import br.hotelEveris.app.model.*;
 
 
 @Entity
@@ -12,17 +9,34 @@ public class Quarto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(unique = true)
+	private int numQuarto;
+	
 	private int andar;
-	private String numQuarto;
 	private String situacao;
 	
 	@ManyToOne
 	@JoinColumn(name = "IdTipoQuarto")
 	private TipoQuarto tipoQuarto;
-	
-	@ManyToMany(mappedBy = "quarto")
-	Set<Comodidade> comododidade;
 
+	public Quarto(Long id) {
+		super();
+		this.id = id;
+	}
+
+	public Quarto(int numQuarto, int andar, String situacao, TipoQuarto tipoQuarto) {
+		super();
+		this.numQuarto = numQuarto;
+		this.andar = andar;
+		this.situacao = situacao;
+		this.tipoQuarto = tipoQuarto;
+	}
+
+	public Quarto() {
+		
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -39,11 +53,11 @@ public class Quarto {
 		this.andar = andar;
 	}
 
-	public String getNumQuarto() {
+	public int getNumQuarto() {
 		return numQuarto;
 	}
 
-	public void setNumQuarto(String numQuarto) {
+	public void setNumQuarto(int numQuarto) {
 		this.numQuarto = numQuarto;
 	}
 

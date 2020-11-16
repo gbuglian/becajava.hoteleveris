@@ -4,7 +4,7 @@ import br.hotelEveris.app.response.BaseResponse;
 
 public class BaseController {
 	
-	public BaseResponse errorBase = new BaseResponse();
+	public BaseResponse errorBase = new BaseResponse(500, "Erro");
 	
 	public BaseController() {
 		errorBase.statusCode = 500;

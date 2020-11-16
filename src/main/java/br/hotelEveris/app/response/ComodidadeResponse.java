@@ -5,6 +5,16 @@ public class ComodidadeResponse extends BaseResponse {
 	private Long id;
 	private String nome;
 	
+	public ComodidadeResponse(int statusCode, String message, Long id, String nome) {
+		super(statusCode, message);
+		this.id = id;
+		this.nome = nome;
+	}
+	
+	public ComodidadeResponse(int statusCode, String message) {
+		super(statusCode, message);
+	}
+	
 	public Long getId() {
 		return id;
 	}

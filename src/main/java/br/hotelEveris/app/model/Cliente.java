@@ -15,6 +15,21 @@ public class Cliente {
 	@Column(unique = true)
 	private String hashConta;
 	
+	public Cliente(Long id) {
+		super();
+		this.id = id;
+	}
+	
+	public Cliente(String nome, String cpf, String hashConta) {
+		super();
+		this.nome = nome;
+		this.cpf = cpf;
+		this.hashConta = hashConta;
+	}
+	
+	public Cliente() {
+	}
+
 	public Long getId() {
 		return id;
 	}

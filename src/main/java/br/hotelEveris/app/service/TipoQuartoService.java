@@ -19,106 +19,51 @@ public class TipoQuartoService {
 	@Autowired
 	private TipoQuartoRepository _repository;
 	
-	public BaseResponse inserir(TipoQuartoRequest request) {
-		TipoQuartoResponse response = new TipoQuartoResponse();
-		TipoQuarto tipo = new TipoQuarto();
-		response.statusCode = 400;
-		
+	public BaseResponse inserir(TipoQuartoRequest request) {		
 		if(request.getDescricao() == "") {
-			response.message = "Descrição não preenchida";
-			return response;
+			return new BaseResponse(400, "Insira o nome  do quarto");
 		}
 		
-		if(request.getValor() == null || request.getValor() == 0) {
-			response.message = "Valor não preenchido";
-			return response;
+		if(request.getValor() == null || request.getValor() <= 0) {
+			return new BaseResponse(400, "Insira o valor  do quarto");
 		}
 		
-		tipo.setDescricao(request.getDescricao());
-		tipo.setValor(request.getValor());
+		TipoQuarto tipo = new TipoQuarto(
+				request.getDescricao(),
+				request.getValor()
+				);
+		
 		
 		_repository.save(tipo);
 		
-		response.setDescricao(tipo.getDescricao());
-		response.setValor(tipo.getValor());
-		response.statusCode = 201;
-		response.message = "Tipo de quarto inserido com sucesso";
-		
-		return response;
+		return new BaseResponse(201, "Tipo de quarto inserido com sucesso");
 	}
 	
 	public TipoQuartoResponse obter(Long id) {
 		Optional<TipoQuarto> tipo = _repository.findById(id);
 		
-		TipoQuartoResponse response = new TipoQuartoResponse();
-		response.statusCode = 404;
-		
 		if(tipo.isEmpty()) {
-			response.message = "Tipo de Quarto não localizado";
-			return response;
+			return new TipoQuartoResponse(400, "Tipo de quarto não localizado");
 		}
 		
-		response.setId(tipo.get().getId());
-		response.setDescricao(tipo.get().getDescricao());
-		response.setValor(tipo.get().getValor());
-		
-		response.statusCode = 200;
-		response.message = "Tipo de quarto obtido com sucesso!";
-		
-		return response;	
+		return new TipoQuartoResponse(
+				200, "Tipo de Quarto obtido com sucesso",
+				tipo.get().getId(),
+				tipo.get().getDescricao(),
+				tipo.get().getValor()
+				);
 	}
 	
 	public TipoQuartoListResponse listar(){
 		List<TipoQuarto> tipos = _repository.findAll();
-	
-		TipoQuartoListResponse response = new TipoQuartoListResponse();
-		response.setTiposQuartos(tipos);
 		
-		response.statusCode = 200;
-		response.message = "Tipos de Quartos obtidos com sucesso";
-		return response;
+		if(tipos.isEmpty()) {
+			return new TipoQuartoListResponse(400, "Nenhum tipo de quarto localizado");
+		}
+		
+		return new TipoQuartoListResponse(
+				200, "Tipos de quartos obtidos com sucesso",
+				tipos
+				);
 	}
-	
-//	public BaseResponse atualizar(Long id,TipoQuartoRequest request) {
-//		TipoQuarto tipo = new TipoQuarto();
-//		BaseResponse response = new BaseResponse();
-//		response.statusCode = 400;
-//		
-//		if(request.getDescricao() == "") {
-//			response.message = "Descrição do quarto não preenchido";
-//			return response;
-//		}
-//		
-//		if(request.getValor() == null || request.getValor() == 0) {
-//			response.message = "Valor do quarto não informado";
-//			return response;
-//		}
-//		
-//		tipo.setId(id);
-//		tipo.setDescricao(request.getDescricao());
-//		tipo.setValor(request.getValor());
-//		
-//		_repository.save(tipo);
-//		
-//		response.statusCode = 200;
-//		response.message = "Tipo de Quarto atualizado com sucesso!";
-//		return response;
-//	}
-//	
-//	public BaseResponse deletar(Long id) {
-//		BaseResponse response = new BaseResponse();
-//		response.statusCode = 400;
-//		
-//		if(id == null || id == 0) {
-//			response.message = "Tipo de Quarto não localizado!";
-//			return response;
-//		}
-//		
-//		_repository.deleteById(id);
-//		
-//		response.statusCode = 200;
-//		response.message = "Tipo de Quarto deletado com sucesso!";
-//		return response;
-//	}
-
 }

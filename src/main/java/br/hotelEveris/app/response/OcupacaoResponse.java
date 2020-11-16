@@ -1,42 +1,34 @@
-package br.hotelEveris.app.model;
+package br.hotelEveris.app.response;
 
 import java.util.Date;
 
-import javax.persistence.*;
+import br.hotelEveris.app.model.Cliente;
+import br.hotelEveris.app.model.Quarto;
 
-@Entity
-public class Ocupacao {
+public class OcupacaoResponse extends BaseResponse {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Date data;
 	private int QtdDias;
 	private String status;
-	
-	@ManyToOne
-	@JoinColumn(name = "IdCliente")
 	private Cliente cliente;
-	
-	@ManyToOne
-	@JoinColumn(name = "IdQuarto")
 	private Quarto quarto;
 	
-	public Ocupacao(Date data, int qtdDias, Cliente cliente, Quarto quarto) {
-		super();
+	public OcupacaoResponse(int statusCode, String message, Long id, Date data, int qtdDias, String status,Cliente cliente, Quarto quarto) {
+		super(statusCode, message);
+		this.id = id;
 		this.data = data;
-		this.QtdDias = qtdDias;
-		this.status = "N";
+		QtdDias = qtdDias;
+		this.status = status;
 		this.cliente = cliente;
 		this.quarto = quarto;
 	}
 	
-	public Ocupacao(Long id) {
-		super();
-		this.id = id;
+	public OcupacaoResponse(int statusCode, String message) {
+		super(statusCode, message);
 	}
 	
-	public Ocupacao() {
+	public OcupacaoResponse() {
 		
 	}
 
@@ -86,5 +78,6 @@ public class Ocupacao {
 
 	public void setQuarto(Quarto quarto) {
 		this.quarto = quarto;
-	}	
+	}
+
 }

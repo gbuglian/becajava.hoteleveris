@@ -1,7 +1,5 @@
 package br.hotelEveris.app.model;
 
-import java.util.Set;
-
 import javax.persistence.*;
 
 
@@ -13,11 +11,18 @@ public class Comodidade {
 	private Long id;
 	private String nome;
 	
-	@ManyToMany
-    @JoinTable(name = "QuartoComodidade", 
-    inverseJoinColumns = @JoinColumn(name = "comodidadeId"),
-    joinColumns = @JoinColumn(name = "quartoId"))
-    Set<Quarto> quarto;
+	public Comodidade(Long id) {
+		super();
+		this.id = id;
+	}
+	
+	public Comodidade(String nome) {
+		super();
+		this.nome = nome;
+	}
+	
+	public Comodidade() {
+	}	
 	
 	public Long getId() {
 		return id;

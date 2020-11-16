@@ -19,56 +19,48 @@ public class ComodidadeService {
 	@Autowired
 	private ComodidadeRepository _repository;
 	
-	public BaseResponse inserir(ComodidadeRequest request) {
-		ComodidadeResponse response = new ComodidadeResponse();
-		Comodidade comodidade = new Comodidade();
-		response.statusCode = 400;
-		
+	public BaseResponse inserir(ComodidadeRequest request) {		
 		if(request.getNome() == "" || request.getNome() == null ) {
-			response.message = "Comodidade não informada";
-			return response;
+			return new BaseResponse(400, "Erro, Preencha o nome da comodidade");
 		}
 		
-		comodidade.setNome(request.getNome());
+		Comodidade comodidade = new Comodidade(
+				request.getNome()
+				);
 		
 		_repository.save(comodidade);
 		
-		response.setNome(comodidade.getNome());
-		response.setId(comodidade.getId());
-		response.statusCode = 201;
-		response.message = "Comodidade inserida com sucesso!";
-		
-		return response;
+		return new BaseResponse(201, "Comodidade inserida com sucesso!");
 	}
 	
 	public ComodidadeResponse obter(Long id) {
 		Optional<Comodidade> comodidade = _repository.findById(id);
-		ComodidadeResponse response = new ComodidadeResponse();
-		response.statusCode = 400;
 		
 		if(comodidade.isEmpty()) {
-			response.message = "Comodidade não localizada";
-			return response;
+			return new ComodidadeResponse(400, "Comodidade não localizada");
 		}
 		
-		response.setId(comodidade.get().getId());
-		response.setNome(comodidade.get().getNome());
-		response.statusCode = 200;
-		response.message = "Comodidade obtida com sucesso!";
-		
-		return response;
+		return new ComodidadeResponse(
+				200,
+				"Cliente obtido com sucesso",
+				comodidade.get().getId(),
+				comodidade.get().getNome()
+				);
 	}
 	
 	public ComodidadeListResponse listar() {
 		List <Comodidade> list = _repository.findAll();
 		
-		ComodidadeListResponse response = new ComodidadeListResponse();
-		response.setComodidades(list);
 		
-		response.statusCode = 200;
-		response.message = "Comodidades Obtidas com sucesso!";
+		if(list.isEmpty()) {
+			return new ComodidadeListResponse(400, "Nenhuma comodidade localizada");
+		}
 		
-		return response;
+		return new ComodidadeListResponse(
+				200,
+				"Comodidades obtifas com sucesso",
+				list
+				);
 	}
 
 }

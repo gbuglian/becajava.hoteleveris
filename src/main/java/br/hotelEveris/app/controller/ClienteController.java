@@ -9,26 +9,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.hotelEveris.app.request.ComodidadeRequest;
+import br.hotelEveris.app.request.ClienteRequest;
 import br.hotelEveris.app.response.BaseResponse;
-import br.hotelEveris.app.response.ComodidadeResponse;
-import br.hotelEveris.app.service.ComodidadeService;
+import br.hotelEveris.app.response.ClienteResponse;
+import br.hotelEveris.app.service.ClienteService;
 
 @RestController
-@RequestMapping("/comodidades")
-public class ComodidadeController extends BaseController {
+@RequestMapping("/clientes")
+public class ClienteController extends BaseController {
 
 	@Autowired
-	private ComodidadeService service;
+	private ClienteService service;
 
 	@PostMapping
-	public ResponseEntity inserir(@RequestBody ComodidadeRequest request) {
+	public ResponseEntity inserir(@RequestBody ClienteRequest request) {
 		try {
-			System.out.println("alo");
 			BaseResponse response = service.inserir(request);
 			return ResponseEntity.status(response.statusCode).body(response);
 		} catch (Exception e) {
-			System.out.println("Aqui");
 			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
 		}
 	}
@@ -36,21 +34,10 @@ public class ComodidadeController extends BaseController {
 	@GetMapping(path = "/{id}")
 	public ResponseEntity obter(@PathVariable Long id) {
 		try {
-			ComodidadeResponse response = service.obter(id);
+			ClienteResponse response = service.obter(id);
 			return ResponseEntity.status(response.statusCode).body(response);
 		} catch (Exception e) {
 			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
 		}
 	}
-
-	@GetMapping
-	public ResponseEntity listar() {
-		try {
-			BaseResponse response = service.listar();
-			return ResponseEntity.status(response.statusCode).body(response);
-		} catch (Exception e) {
-			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
-		}
-	}
-
 }
