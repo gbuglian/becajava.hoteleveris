@@ -43,7 +43,7 @@ public class OcupacaoServiceImp implements OcupacaoService {
 			return new BaseResponse(400, "Informe o quarto");
 		}
 		
-		if(request.getData() == null) {
+		if(request.getData() == "") {
 			return new BaseResponse(400, "Insira a data de hospedagem");
 		}
 		
