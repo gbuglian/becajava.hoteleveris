@@ -8,19 +8,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 import br.hotelEveris.app.request.ClienteRequest;
 import br.hotelEveris.app.response.BaseResponse;
 import br.hotelEveris.app.response.ClienteResponse;
-import br.hotelEveris.app.service.ClienteService;
+import br.hotelEveris.app.service.imp.ClienteServiceImp;
 
 @SpringBootTest
 public class ClienteTest {
 
 	@Autowired
-	private ClienteService service;
+	private ClienteServiceImp service;
 	
 	@Test
 	public void inserir() {
 		ClienteRequest request = new ClienteRequest();
-		request.setCpf("5038685");
-		request.setHash("testestets");
+		request.setCpf("856632");
+		request.setHash("testefinal");
 		request.setNome("Gabriel");
 		
 		BaseResponse response = service.inserir(request);
@@ -111,7 +111,7 @@ public class ClienteTest {
 	//TESTE DE CLIENTE POR ID
 	@Test
 	public void obter() {
-		Long id = 3L;
+		Long id = 29L;
 		ClienteResponse response = service.obter(id);
 		Assertions.assertEquals(200, response.getStatusCode());
 		Assertions.assertEquals("Cliente Obtido com sucesso", response.getMessage());

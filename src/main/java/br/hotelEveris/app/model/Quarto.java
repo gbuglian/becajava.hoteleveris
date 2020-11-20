@@ -29,7 +29,7 @@ public class Quarto {
 		super();
 		this.numQuarto = numQuarto;
 		this.andar = andar;
-		this.situacao = situacao;
+		this.situacao = "A";
 		this.tipoQuarto = tipoQuarto;
 	}
 

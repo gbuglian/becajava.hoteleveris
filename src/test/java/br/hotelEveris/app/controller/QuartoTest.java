@@ -15,26 +15,26 @@ import br.hotelEveris.app.request.QuartoRequest;
 import br.hotelEveris.app.response.BaseResponse;
 import br.hotelEveris.app.response.QuartoListResponse;
 import br.hotelEveris.app.response.QuartoResponse;
-import br.hotelEveris.app.service.QuartoService;
+import br.hotelEveris.app.service.imp.QuartoServiceImp;
 
 @SpringBootTest
 public class QuartoTest {
 	
 	@Autowired
-	private QuartoService service;
+	private QuartoServiceImp service;
 	
 	@Test
 	public void inserir() {
 		QuartoRequest request =  new QuartoRequest();
-		request.setAndar(32);
+		request.setAndar(21);
 		
 		List<ComodidadeRequest> lista = new ArrayList<ComodidadeRequest>();
 		ComodidadeRequest comodidade = new ComodidadeRequest();
-		comodidade.setId(1L);
+		comodidade.setId(14L);
 		lista.add(comodidade);
 		
 		request.setComodidades(lista);
-		request.setTipoQuartoId(1L);
+		request.setTipoQuartoId(11L);
 		int numQuarto = this.getRandomNumberUsingInts(1,1000);
 		request.setNumQuarto(numQuarto);
 		request.setSituacao("A");
@@ -53,11 +53,11 @@ public class QuartoTest {
 		
 		List<ComodidadeRequest> lista = new ArrayList<ComodidadeRequest>();
 		ComodidadeRequest comodidade = new ComodidadeRequest();
-		comodidade.setId(1L);
+		comodidade.setId(14L);
 		lista.add(comodidade);
 		
 		request.setComodidades(lista);
-		request.setTipoQuartoId(1L);
+		request.setTipoQuartoId(11L);
 //		int numQuarto = this.getRandomNumberUsingInts(1,1000);
 //		request.setNumQuarto(numQuarto);
 		request.setSituacao("A");
@@ -75,11 +75,11 @@ public class QuartoTest {
 		
 		List<ComodidadeRequest> lista = new ArrayList<ComodidadeRequest>();
 		ComodidadeRequest comodidade = new ComodidadeRequest();
-		comodidade.setId(1L);
+		comodidade.setId(14L);
 		lista.add(comodidade);
 		
 		request.setComodidades(lista);
-		request.setTipoQuartoId(1L);
+		request.setTipoQuartoId(11L);
 		int numQuarto = this.getRandomNumberUsingInts(1,1000);
 		request.setNumQuarto(numQuarto);
 		request.setSituacao("A");
@@ -96,18 +96,18 @@ public class QuartoTest {
 		
 		List<ComodidadeRequest> lista = new ArrayList<ComodidadeRequest>();
 		ComodidadeRequest comodidade = new ComodidadeRequest();
-		comodidade.setId(1L);
+		comodidade.setId(14L);
 		lista.add(comodidade);
 		
 		request.setComodidades(lista);
-		request.setTipoQuartoId(1L);
+		request.setTipoQuartoId(11L);
 		int numQuarto = this.getRandomNumberUsingInts(1,1000);
 		request.setNumQuarto(numQuarto);
 		request.setSituacao("");
 		
 		BaseResponse response = service.inserir(request);
 		Assertions.assertEquals(400, response.getStatusCode());
-		Assertions.assertEquals("Preencha a situação do quarto", response.getMessage());	
+		Assertions.assertEquals("Preencha a situação do quarto, Preencha A se estiver Ativo, ou Preencha I se estiver inativo", response.getMessage());	
 	}
 	
 	@Test
@@ -117,7 +117,7 @@ public class QuartoTest {
 		
 		List<ComodidadeRequest> lista = new ArrayList<ComodidadeRequest>();
 		ComodidadeRequest comodidade = new ComodidadeRequest();
-		comodidade.setId(1L);
+		comodidade.setId(14L);
 		lista.add(comodidade);
 		
 		request.setComodidades(lista);
@@ -140,7 +140,7 @@ public class QuartoTest {
 	
 	@Test
 	public void obter() {
-		Long id = 1L;
+		Long id = 30L;
 		QuartoResponse response = service.obter(id);
 		
 		Assertions.assertEquals(200, response.getStatusCode());
@@ -166,7 +166,7 @@ public class QuartoTest {
 	
 	@Test
 	public void listarQuartoPorTipoQuartoId() {
-		Long id = 1L;
+		Long id = 11L;
 		QuartoListResponse response = service.listar(id);
 		
 		Assertions.assertEquals(200, response.getStatusCode());
@@ -188,7 +188,7 @@ public class QuartoTest {
 		QuartoPatchRequest request = new QuartoPatchRequest();
 		request.setSituacao("A");
 		
-		Long id = 1L;	
+		Long id = 30L;	
 		BaseResponse response = service.atualizar(id, request);
 		Assertions.assertEquals(200, response.getStatusCode());
 		Assertions.assertEquals("Atualizado com sucesso", response.getMessage());

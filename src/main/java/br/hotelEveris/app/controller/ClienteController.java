@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import br.hotelEveris.app.request.ClienteRequest;
 import br.hotelEveris.app.response.BaseResponse;
 import br.hotelEveris.app.response.ClienteResponse;

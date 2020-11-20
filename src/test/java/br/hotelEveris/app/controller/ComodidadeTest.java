@@ -8,18 +8,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 import br.hotelEveris.app.request.ComodidadeRequest;
 import br.hotelEveris.app.response.BaseResponse;
 import br.hotelEveris.app.response.ComodidadeResponse;
-import br.hotelEveris.app.service.ComodidadeService;
+import br.hotelEveris.app.service.imp.ComodidadeServiceImp;
 
 @SpringBootTest
 public class ComodidadeTest {
 
 	@Autowired
-	private ComodidadeService service;
+	private ComodidadeServiceImp service;
 	
 	@Test
 	public void inserir() {
 		ComodidadeRequest request = new ComodidadeRequest();
-		request.setNome("Serviço de Quarto");
+		request.setNome("SERVIÇO");
 		
 		
 		BaseResponse response = service.inserir(request);
@@ -49,7 +49,7 @@ public class ComodidadeTest {
 	
 	@Test
 	public void obter() {
-		Long id = 3L;
+		Long id = 14L;
 		ComodidadeResponse response = service.obter(id);
 		Assertions.assertEquals(200, response.getStatusCode());
 	}

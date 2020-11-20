@@ -9,20 +9,20 @@ import br.hotelEveris.app.request.TipoQuartoRequest;
 import br.hotelEveris.app.response.BaseResponse;
 import br.hotelEveris.app.response.TipoQuartoListResponse;
 import br.hotelEveris.app.response.TipoQuartoResponse;
-import br.hotelEveris.app.service.TipoQuartoService;
+import br.hotelEveris.app.service.imp.TipoQuartoServiceImp;
 
 @SpringBootTest
 public class TipoQuartoTest {
 	
 	@Autowired
-	private TipoQuartoService service;
+	private TipoQuartoServiceImp service;
 	
 
 	@Test
 	public void inserir() {
 		TipoQuartoRequest request = new TipoQuartoRequest();
 		request.setDescricao("Testando");
-		request.setValor(1010.20);
+		request.setValor(100.20);
 		
 		BaseResponse response = service.inserir(request);
 	
@@ -66,7 +66,7 @@ public class TipoQuartoTest {
 	
 	@Test
 	public void obter() {
-		Long id = 1L;
+		Long id = 11L;
 		
 		TipoQuartoResponse response = service.obter(id);
 		

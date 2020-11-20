@@ -24,11 +24,9 @@ public class ComodidadeController extends BaseController {
 	@PostMapping
 	public ResponseEntity inserir(@RequestBody ComodidadeRequest request) {
 		try {
-			System.out.println("alo");
 			BaseResponse response = service.inserir(request);
 			return ResponseEntity.status(response.statusCode).body(response);
 		} catch (Exception e) {
-			System.out.println("Aqui");
 			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
 		}
 	}

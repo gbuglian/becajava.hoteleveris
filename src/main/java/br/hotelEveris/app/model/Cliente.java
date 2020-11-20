@@ -10,6 +10,8 @@ public class Cliente {
 	private Long id;
 	
 	private String nome;
+	
+	@Column(unique = true)
 	private String cpf;
 	
 	@Column(unique = true)
